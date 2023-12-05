@@ -1,0 +1,153 @@
+﻿@using Booking_Project.Models
+@model List<Reservations> 
+
+@{
+    ViewData["Title"] = "GetAll";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/Reservations.css"/>
+}
+
+<h1>GetAll</h1>
+
+
+ 
+<section class="intro">
+  <div class="bg-image h-100" style="background-color: #f5f7fa;">
+ <div class="mask d-flex align-items-center h-100">
+   <div class="container">
+  <div class="row justify-content-center">
+      <div class="col-12">
+   <div class="card">
+      <div class="card-body p-0">
+      <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 700px">
+       <table class="table table-striped mb-0">
+        <thead style="background-color: #002d72;">
+        <tr>
+       <th scope="col">Booking ID</th>
+       <th scope="col">User Name</th>
+        <th scope="col">CheckinDate </th>
+         <th scope="col">CheckOutDate</th>
+         <th scope="col">Payment Status</th>
+         <th scope="col">Room Status</th>
+         <th scope="col">Reservation Rooms</th>
+         </tr>
+            </thead>
+          <tbody>
+
+              @foreach(var reservation in Model){
+           <tr>
+         <td> @reservation.Id</td>
+         <td>@reservation.user.Fname</td>
+         <td>@reservation.CheckInDate</td>
+         <td>@reservation.CheckOutDate</td>
+         @*<td>@reservation.payments.PaymentAmount</td>*@
+         @*<td>@reservation.Status.Value</td>*@
+
+            <td>
+              
+          <ul class="list-group-flush">
+              @foreach(var room in reservation.reservationRooms){
+          <li class="list-group-flush">@room.room.room_number</li>
+              }
+             </ul>
+             </td>
+              
+           </tr>
+                                        
+              }
+                                           
+      </tbody>
+     </table>
+    </div>
+      </div>
+    </div>
+   </div>
+   </div>
+ </div>
+ </div>
+</div>
+</section>
+
+<@*table class="table table-bordered table-hover">
+    <tr>
+        <th>CheckInDate</th>
+        <th>CheckOutDate</th>
+        <th>Total Price</th>
+        <th>Status</th>
+        <th>user</th>
+        <th>Payments</th>
+
+    </tr>
+    <tr>
+        @foreach(var reservation in Model)
+        {
+            <td>@reservation.CheckInDate</td>
+            <td>@reservation.CheckOutDate</td>
+            <td>@reservation.TotalPrice</td>
+            <td>@reservation.Status</td>
+            <td>@reservation.user.UserName</td>
+            <td>@reservation.payments.PaymentAmount</td>
+            
+             <div>  <a asp-action="EditReservation" asp-route-id="@reservation?.Id" class="btn btn-primary">Edit</a>
+                <a asp-action="DeleteReservation" asp-route-id="@reservation?.Id" class="btn btn-danger"></a>
+            </div>
+            
+        }
+    </tr>
+    <tr >
+    <a asp-action="GetAll" class="btn btn-primary h-25">Back to List</a>
+    <a asp-action="AddReservation" class="btn btn-primary h-25">Add Reservation</a>
+    </tr>
+</table>
+@*
+
+@*
+<div class="row">
+    <h4>Reservations</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CheckInDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CheckInDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CheckOutDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CheckOutDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.user)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.user.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.payments)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.payments.Id)
+        </dd>
+    </dl>
+</div>
+<div class="col">
+    <a asp-action="EditReservation" asp-route-id="@Model?.Id">Edit</a>
+    <a asp-action="GetAll">Back to List</a>
+    <a asp-action="AddReservation">Add Reservation</a>
+</div>
+*@

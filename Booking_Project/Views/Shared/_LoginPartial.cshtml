@@ -1,0 +1,40 @@
+﻿<link href="~/css/loginpartial.css" rel="stylesheet" />
+<div class="mt-2 me-5 smallsize" style=@(User.IsInRole("Admin")?"margin-left:14rem":"margin-left:67rem")>
+<div class="dropdown">
+    <div class="dropdown-menu rounded mt-6" aria-labelledby="dropdownMenuButton" style="width:13.6rem">
+        <a class="dropdown-item" href="#">
+            <i class="fas fa-user" style="color: #08090d;"></i> Manage Profile
+        </a>
+        @if(User.IsInRole("Admin"))
+            {
+                <a class="dropdown-item" asp-action="addadmin" asp-controller="adminaccount">
+                    <i class="fas fa-comments"></i> Add Admin
+                </a>
+            }
+            else
+            {
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-comments"></i> Reviews
+                </a>
+            }
+            <a class="dropdown-item" asp-action="signout" asp-controller="Account">
+            <i class="fa fa-sign-out" aria-hidden="true"></i> SignOut
+        </a>
+    </div>
+</div>
+<button class="btn btn-outline-custom rounded  dropdown-toggle custom-dropdown-toggle d-flex" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <li class="nav-item">
+        <span class="userprofile badge badge-primary bg-white rounded-circle p-2 fs-25 fw-bold ">
+            <span class="letter d-flex flex-wrap justify-content-center">
+                @User.Identity.Name.ToUpper()[0]
+            </span>
+        </span>
+    </li>
+    <li class="nav-item">
+        <span class="username pl-2">
+            @User.Identity.Name.ToUpper()[0]@User.Identity.Name.Substring(1)
+        </span>
+    </li>
+</button>
+</div>
+
